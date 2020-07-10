@@ -29,7 +29,7 @@
         const y_values = [];
 
         db.collection('evie_log')
-        .find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": -1, "time": -1}})
+        .find({"icon": "bottle"}, {limit: 20, sort: {"blog_date": -1, "time": -1}})
         .toArray()
         .then(docs => {
         docs.map(doc => {
