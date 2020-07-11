@@ -5,7 +5,8 @@
     <title>Evie's Milk Chart</title>
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.6.0/stitch.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-	<style>
+    <link rel="stylesheet" href="blog.css">
+    <style>
 	canvas{
 		-moz-user-select: none;
 		-webkit-user-select: none;
@@ -18,6 +19,13 @@
 </head>
 
 <body onload="get_data();">
+
+    <!-- EVIE'S CHEEKY FACE -->
+    <div class="header">
+        <img class="logo" src="evie.jpg">
+        <h1>Evie's Log</h1>
+    </div>
+
 	<div style="width:90%;">
         <canvas id="line_canvas"></canvas>
         <canvas id="bar_canvas"></canvas>
@@ -40,7 +48,7 @@
         const x_values = [];
         const y_values = [];
         db.collection('evie_log')
-        .find({"icon": "bottle"}, {limit: 20, sort: {"blog_date": -1, "time": -1}})
+        .find({"icon": "bottle"}, {limit: 35, sort: {"blog_date": -1, "time": -1}})
         .toArray()
         .then(docs => {
         docs.map(doc => {
@@ -64,7 +72,8 @@
 				},
 				responsive: true,
 				title: {
-					display: true,
+                    display: true,
+                    fontSize: 24,
 					text: 'Milk taken per feed'
 				},
 				tooltips: {
@@ -83,8 +92,9 @@
 						}
 					}],
 					yAxes: [{
-						display: true,
+                        display: true,
 						ticks: {
+                            fontSize: 16,
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
@@ -139,7 +149,8 @@
 					display: false
 				},
 				title: {
-					display: true,
+                    display: true,
+                    fontSize: 24,
 					text: 'Total Milk per Day'
 				},
 				tooltips: {
@@ -155,7 +166,7 @@
 						/*gridLines: {
 							display:false
 						},*/
-						display: true
+                        display: true
 						/*scaleLabel: {
 							display: true,
 							labelString: 'Date'
@@ -171,6 +182,7 @@
 							//labelString: 'Volume (ml)'
 						},
 						ticks: {
+                            fontSize: 16,
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
