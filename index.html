@@ -14,6 +14,7 @@
 		box-shadow: 0 5px 10px rgba(0,0,0,.30);
         border-radius: 5px;
         margin: 10px;
+        padding-right: 8px;
 	}
 	</style>
 </head>
@@ -63,18 +64,22 @@
 				datasets: [{
                     label: "volume",
 					data: y_values,
-					fill: false,
+                    fill: false,
+                    pointRadius: 10,
+                    pointBorderWidth: 4,
+                    pointHoverRadius: 16,
+                    pointBackgroundColor: "#fff",
 				}]
-			},
+            },
 			options: {
 				legend: {
 					display: false
-				},
+                },
 				responsive: true,
 				title: {
                     display: true,
-                    fontSize: 28,
-					text: 'Volume of milk Evie is taking per feed'
+                    fontSize: 30,
+					text: "Volume of milk Evie's taking per feed"
 				},
 				tooltips: {
 					mode: 'index',
@@ -94,7 +99,7 @@
 					yAxes: [{
                         display: true,
 						ticks: {
-                            fontSize: 16,
+                            fontSize: 18,
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
@@ -138,7 +143,7 @@
 			data: {
 				labels: x_values_bar,
 				datasets: [{
-					label: "Total milk Evie's taking per day",
+					//label: "Total milk Evie's taking per day",
 					data: y_values_bar,
 					fill: false,
                 }/*,
@@ -156,7 +161,7 @@
 				},
 				title: {
                     display: true,
-                    fontSize: 28,
+                    fontSize: 30,
 					text: "Total milk Evie's taking per Day"
 				},
 				tooltips: {
@@ -188,7 +193,7 @@
 							//labelString: 'Volume (ml)'
 						},
 						ticks: {
-                            fontSize: 16,
+                            fontSize: 18,
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
