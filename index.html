@@ -13,7 +13,8 @@
 		-ms-user-select: none;
 		box-shadow: 0 5px 10px rgba(0,0,0,.30);
         border-radius: 5px;
-        margin: 10px;
+        margin-left: 10px;
+        margin-top: 20px;
         padding-right: 8px;
 	}
 	</style>
@@ -95,16 +96,32 @@
 						display: true,
 						ticks: {
 							reverse: true
+						},
+						gridLines: {
+							display:false
 						}
 					}],
 					yAxes: [{
+						afterTickToLabelConversion: function(data) {
+							var yLabels = data.ticks;
+
+							yLabels.forEach(function (labels, i) {
+								if (i % 2 == 1){
+									yLabels[i] = '';
+								}
+							});
+						},
                         display: true,
 						ticks: {
-                            fontSize: 18,
+							fontSize: 18,
+							fontStyle: 'bold',
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
 							}
+						},
+						gridLines: {
+							borderDash: [8, 8]
 						}
 					}]
 				}
@@ -121,8 +138,9 @@
         const y_values_bar = [];
         var i = 0;
         db2.collection('evie_log')
-        .find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": 1, "time": -1}})
-        .toArray()
+        //.find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": -1, "time": -1}})
+		.find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": -1}})
+		.toArray()
         .then(docs => {
         docs.map(doc => {
             //x_values.push([doc.time,doc.blog_date]);
@@ -175,9 +193,12 @@
 				},
 				scales: {
 					xAxes: [{
-						/*gridLines: {
+						gridLines: {
 							display:false
-						},*/
+						},
+						ticks: {
+							reverse: true
+						},
                         display: true
 						/*scaleLabel: {
 							display: true,
@@ -185,16 +206,26 @@
 						}*/
 					}],
 					yAxes: [{
-						/*gridLines: {
-							display:false
-						},*/
+						afterTickToLabelConversion: function(data) {
+							var yLabels = data.ticks;
+
+							yLabels.forEach(function (labels, i) {
+								if (i % 2 == 1){
+									yLabels[i] = '';
+								}
+							});
+						},
+						gridLines: {
+							borderDash: [8, 8]
+						},
 						display: true,
 						scaleLabel: {
 							display: true
 							//labelString: 'Volume (ml)'
 						},
 						ticks: {
-                            fontSize: 18,
+							fontSize: 18,
+							fontStyle: 'bold',
 							//add units to the y-axis values
 							callback: function(value, index, values) {
 								return value + 'ml';
