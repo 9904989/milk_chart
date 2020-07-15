@@ -65,7 +65,7 @@
 				datasets: [{
                     label: "volume",
 					data: y_values,
-                    fill: false,
+                    //fill: false,
                     pointRadius: 8,
                     pointBorderWidth: 2,
                     pointBorderColor: "DarkGray",
@@ -139,7 +139,7 @@
         var i = 0;
         db2.collection('evie_log')
         //.find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": -1, "time": -1}})
-		.find({"icon": "bottle"}, {limit: 100, sort: {"blog_date": -1}})
+		.find({"icon": "bottle"}, {limit: 500, sort: {"blog_date": -1}})
 		.toArray()
         .then(docs => {
         docs.map(doc => {
